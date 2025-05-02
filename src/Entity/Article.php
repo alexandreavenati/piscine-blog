@@ -43,6 +43,20 @@ class Article
     #[ORM\Column]
     private ?bool $isPublished = null;
 
+    // méthode pour créer un article
+    public function __construct($title, $description, $content, $image)
+    {
+        // données envoyées par l'utilisateur
+        $this->title = $title;
+        $this->description = $description;
+        $this->content = $content;
+        $this->image = $image;
+
+        // données remplies automatiquement lors de l'envoi
+        $this->createdAt = new DateTime();
+        $this->isPublished = true;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -118,19 +132,5 @@ class Article
         $this->isPublished = $isPublished;
 
         return $this;
-    }
-
-    // méthode pour créer un article
-    public function __construct($title, $description, $content, $image)
-    {
-        // données envoyées par l'utilisateur
-        $this->title = $title;
-        $this->description = $description;
-        $this->content = $content;
-        $this->image = $image;
-
-        // données remplies automatiquement lors de l'envoi
-        $this->createdAt = new DateTime();
-        $this->isPublished = true;
     }
 }
