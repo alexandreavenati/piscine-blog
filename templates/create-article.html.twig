@@ -1,0 +1,35 @@
+{% include 'partial/_header.html.twig' %}
+
+<section>
+
+	<form method="post">
+
+		<div>
+			<label for="title">Titre
+				<input type="text" placeholder="Entrez le titre de l'article..." name="title" id="title">
+			</label>
+		</div>
+
+        <div>
+			<label for="description">Description
+				<input type="text" placeholder="Entrez la description de l'article..." name="description" id="description">
+			</label>
+		</div>
+
+        <div>
+			<label for="content">Contenu
+				<textarea name="content" id="content" placeholder="Entrez le contenu de l'article..."></textarea>
+			</label>
+		</div>
+
+        <div>
+			<label for="image">Image(s)
+				<input type="text" placeholder="Entrez l'url d'une image pour l'article (si vous en avez)..." name="image" id="image">
+			</label>
+		</div>
+
+	</form>
+
+</section>
+
+{% include 'partial/_footer.html.twig' %}
