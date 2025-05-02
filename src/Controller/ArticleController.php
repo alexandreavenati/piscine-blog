@@ -17,7 +17,7 @@ class ArticleController extends AbstractController {
     // Création d'un article lorsqu'on envoie la requête en post (quand on clique sur le bouton de type submit)
     // Utilisation de la classe Request de Symfony pour récupérer le type de données envoyées
     // Utilisation de la classe EntityManagerInterface de Symfony pour sauvegarder et pousser le contenu de l'article
-    // créée dans lle tableau de la bdd
+    // créée dans le tableau de la bdd
     public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager){
 
         if ($request->isMethod('POST')) {
