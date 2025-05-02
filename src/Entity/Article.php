@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -107,5 +108,18 @@ class Article
         $this->isPublished = $isPublished;
 
         return $this;
+    }
+
+    public function __construct($title, $description, $content, $image)
+    {
+        // données envoyées par l'utilisateur
+        $this->title = $title;
+        $this->description = $description;
+        $this->content = $content;
+        $this->image = $image;
+
+        // données remplies automatiquement lors de l'envoi
+        $this->createdAt = new DateTime();
+        $this->isPublished = true;
     }
 }

@@ -1,9 +1,28 @@
 {% include 'partial/_header.html.twig' %}
 
-<section>
+<main class="home-page">
 
-	<h1>Bienvenue sur le site de blog</h1>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Bienvenue sur <span>Mon Blog</span></h1>
+                <p>Partage d’articles sur le développement, la technologie, et plus encore.</p>
+                <a href="{{ path('create-article') }}" class="btn">Écrire un article</a>
+            </div>
+        </section>
 
-</section>
+        <section class="about">
+            <h2>À propos du blog</h2>
+            <p>Ce blog est un espace collaboratif où les passionnés de web, de code et de création numérique peuvent publier et consulter des articles.</p>
+        </section>
+
+        <section class="latest-articles">
+            <h2>Derniers articles publiés</h2>
+            <div class="articles-list">
+                    <p>Aucun article publié pour le moment.</p>
+            </div>
+        </section>
+
+    </main>
+
 
 {% include 'partial/_footer.html.twig' %}
