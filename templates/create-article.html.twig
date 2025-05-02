@@ -1,5 +1,10 @@
-{% include 'partial/_header.html.twig' %}
+{% extends 'base.html.twig' %}
 
+{% block metatitle %}
+    Crée ton article !!!
+{% endblock metatitle %}
+
+{% block main %}
 <section>
 
 	<form method="post" class="article-form">
@@ -44,4 +49,4 @@
 
 </section>
 
-{% include 'partial/_footer.html.twig' %}
+{% endblock main %}

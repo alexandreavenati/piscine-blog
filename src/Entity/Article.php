@@ -7,29 +7,39 @@ use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+// lie la claase à un tableau de la bdd
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
+    // clé primaire
     #[ORM\Id]
+    // auto incrémentation
     #[ORM\GeneratedValue]
+    // création de la colonne 'id'
     #[ORM\Column]
     private ?int $id = null;
 
+    // création de la colonne 'title' de type varchar(255)
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    // création de la colonne 'description' de type varchar(255)
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
+    // création de la colonne 'content' de type text
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+    // création de la colonne 'image' de type varchar(255)
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    // création de la colonne 'created_at' de type datetime
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    // création de la colonne 'is_published' de type boolean
     #[ORM\Column]
     private ?bool $isPublished = null;
 
@@ -110,6 +120,7 @@ class Article
         return $this;
     }
 
+    // méthode pour créer un article
     public function __construct($title, $description, $content, $image)
     {
         // données envoyées par l'utilisateur

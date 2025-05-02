@@ -1,5 +1,10 @@
-{% include 'partial/_header.html.twig' %}
+{% extends 'base.html.twig' %}
 
+{% block metatitle %}
+    Bienvenue sur le site de blog !!!
+{% endblock metatitle %}
+
+{% block main %}
 <main class="home-page">
 
         <section class="hero">
@@ -18,11 +23,10 @@
         <section class="latest-articles">
             <h2>Derniers articles publiés</h2>
             <div class="articles-list">
-                    <p>Aucun article publié pour le moment.</p>
+                <p>Aucun article publié pour le moment.</p>
             </div>
         </section>
 
     </main>
 
-
-{% include 'partial/_footer.html.twig' %}
+{% endblock main %}

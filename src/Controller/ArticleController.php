@@ -11,8 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController {
 
+
     #[Route('/creer-article', name: 'create-article')]
-    public function displayCreateArticle(Request $request){
+
+    // Création d'un article lorsqu'on envoie la requête en post (quand on clique sur le bouton de type submit)
+    // Utilisation de la classe Request de Symfony pour récupérer le type de données envoyées
+    // Utilisation de la classe EntityManagerInterface de Symfony pour sauvegarder et pousser le contenu de l'article
+    // créée dans lle tableau de la bdd
+    public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager){
 
         if ($request->isMethod('POST')) {
 
@@ -23,6 +29,13 @@ class ArticleController extends AbstractController {
 
             $article = new Article($title, $description, $content, $image);
 
+            // sauvegarde l'article créé
+            $entityManager->persist($article);
+
+            // pousse l'article créé dans la base de donnée
+			$entityManager->flush();
+
+            // msg flash
             $this->addFlash("success", "Article : " . $article->getTitle() . " a été enregistré.");
         }
 
