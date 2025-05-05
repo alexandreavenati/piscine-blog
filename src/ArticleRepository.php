@@ -7,10 +7,12 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use \DateTime;
 
+// Héritage de la classe 'ServiceEntityRepository' de Doctrine
 class ArticleRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
+        // Appel du parent 'ServiceEntityRepository' qui gère l'entity 'Article'
         parent::__construct($registry, Article::class);
     }
 
