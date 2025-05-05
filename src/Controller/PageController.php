@@ -12,9 +12,9 @@ class PageController extends AbstractController {
     #[Route('/', name: 'home')]
     public function displayHome(ArticleRepository $articleRepository){
 
-        $articles = $articleRepository->findAll();
+        $articles = $articleRepository->sortArticlesByDate();
 
-        return $this->render('home.html.twig', ['articles' => $articles]);
+        return $this->render('home.html.twig', ['articles' => array_slice($articles, 0, 2)]);
     }
 
     #[Route('/404', name:'404')]

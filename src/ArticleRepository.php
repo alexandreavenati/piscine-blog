@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use \DateTime;
 
 /**
  * @extends ServiceEntityRepository<Article>
@@ -27,8 +26,8 @@ class ArticleRepository extends ServiceEntityRepository
         // Trie les articles par date de création dans un ordre décroissant
         usort($articles, function ($a, $b) {
             // Crée des objets DateTime à partir des dates de création
-            $dateA = new DateTime($a['date_creation']);
-            $dateB = new DateTime($b['date_creation']);
+            $dateA = $a->getCreatedAt();
+            $dateB = $b->getCreatedAt();
             return $dateB <=> $dateA; // Compare les dates et les retourne dans l'ordre décroissant (plus récent au plus vieux)
         });
 
