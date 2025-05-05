@@ -29,7 +29,7 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $articles = $this->findAll();
 
-        // Trie les cocktails par date de création dans un ordre décroissant
+        // Trie les articles par date de création dans un ordre décroissant
         usort($articles, function ($a, $b) {
             // Crée des objets DateTime à partir des dates de création
             $dateA = new DateTime($a['date_creation']);
