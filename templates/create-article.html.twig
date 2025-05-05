@@ -5,7 +5,7 @@
 {% endblock metatitle %}
 
 {% block main %}
-	<section>
+	<section class="home-page">
 
 		<form method="post" class="article-form">
 
@@ -37,7 +37,6 @@
 
 	</section>
 {% endblock main %}
-
 
 {% block flashMessage %}
 	{% for message in app.flashes('article_created') %}

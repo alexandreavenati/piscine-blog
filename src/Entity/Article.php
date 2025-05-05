@@ -57,6 +57,16 @@ class Article
         $this->isPublished = true;
     }
 
+    // méthode pour modifier/mettre à jour les articles
+    public function update($title, $description, $content, $image) {
+
+        // données remplies par l'utilisateur
+        $this->title = $title;
+        $this->description = $description;
+        $this->content = $content;
+        $this->image = $image;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

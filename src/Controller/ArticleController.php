@@ -83,4 +83,36 @@ class ArticleController extends AbstractController {
 
         return $this->redirectToRoute('list-articles');
     }
+
+    #[Route(path: '/modifier-article/{id}', name: "update-article")]
+	public function displayUpdateArticle( ArticleRepository $articleRepository, EntityManagerInterface $entityManager,Request $request, $id) {
+
+        // On trouve l'article par l'id
+		$article = $articleRepository->find($id);
+
+        // vérifie si la méthode d'envoi est 'POST'
+        if ($request->isMethod('POST')) {
+            // On récupère les données que l'on avait lors de la création/dernière modification
+            $title = $request->request->get('title');
+            $description = $request->request->get('description');
+            $content = $request->request->get('content');
+            $image = $request->request->get('image'); 
+            
+            // On modifie le contenu de l'article
+            $article->update($title, $description, $content, $image);
+
+            // On sauvegarde la lodification du contenu
+            $entityManager->persist($article);
+            // On pousse les données dans le tableau correspondant de la bdd
+            $entityManager->flush();
+
+            $this->addFlash("article_updated", "L'article a été modifié");
+
+            return $this->redirectToRoute('list-articles');
+        }
+        
+        
+
+		return $this->render('update-article.html.twig', ['article' => $article]);
+	}
 }

@@ -5,8 +5,7 @@
 {% endblock metatitle %}
 
 {% block main %}
-	<main>
-		<section class="latest-articles">
+		<section class="latest-articles, home-page">
 			<h2>Tout les articles</h2>
 			<div class="articles-list">
 				{% if not articles %}
@@ -24,6 +23,9 @@
 										{{ article.createdAt | date('d/m/Y') }}</span>
 								</article>
 							</a>
+                            <div class="update-link">
+                                <a href="{{ path('update-article', {'id': article.id}) }}" class="link-update">✏️ Modifier</a>
+                            </div>
 							<div class="delete-link">
 								<a href="{{ path('delete-article', {'id': article.id}) }}" class="link-delete" onclick="return confirm('Confirmer la suppression de cet article ?')">
 									🗑 Supprimer
