@@ -63,6 +63,11 @@ class ArticleController extends AbstractController {
         // Récupère les articles par leur id pour pouvoir en afficher qu'un
         $article = $articleRepository->find($id);
 
+        if(!$article) {
+
+            return $this->redirectToRoute('404');
+        }
+
         return $this->render('show-article.html.twig', ['article' => $article]);
     }
 }
