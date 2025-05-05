@@ -20,7 +20,7 @@ class PageController extends AbstractController {
     #[Route('/404', name:'404')]
     public function page404() {
 
-        $html = $this->renderView('404.html.twig');
+        $html = $this->renderView('error404.html.twig');
 
         return new Response($html, 404);
     }
