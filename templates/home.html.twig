@@ -9,7 +9,7 @@
 
         <section class="hero">
             <div class="hero-content">
-                <h1>Bienvenue sur <span>Mon Blog</span></h1>
+                <h1>Bienvenue sur Mon Blog</h1>
                 <p>Partage d’articles sur le développement, la technologie, et plus encore.</p>
                 <a href="{{ path('create-article') }}" class="btn">Écrire un article</a>
             </div>
@@ -24,7 +24,7 @@
             <h2>Derniers articles publiés</h2>
             <div class="articles-list">
                 {% for article in articles %}
-					<div class="article-card">
+					<article class="article-card">
 						{% if article.image %}
 							<img src="{{ article.image }}" alt="{{ article.title }}">
 						{% endif %}
@@ -33,7 +33,7 @@
 						<p>{{ article.content }}</p>
 						<span>Publié le {{ article.createdAt | date('d/m/Y') }}</span>
 					    </p>
-				    </div>
+				    </article>
 			    {% endfor %}
                 <p>Aucun article publié pour le moment.</p>
             </div>

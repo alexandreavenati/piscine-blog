@@ -55,4 +55,14 @@ class ArticleController extends AbstractController {
 
         return $this->render('articles-list.html.twig', ['articles'=> $articles]);
     }
+
+    #[Route('/article/{id}', name:'show-article')]
+    
+    public function showArticle(ArticleRepository $articleRepository, $id) {
+
+        // Récupère les articles par leur id pour pouvoir en afficher qu'un
+        $article = $articleRepository->find($id);
+
+        return $this->render('show-article.html.twig', ['article' => $article]);
+    }
 }

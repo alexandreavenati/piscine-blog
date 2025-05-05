@@ -7,6 +7,10 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use \DateTime;
 
+/**
+ * @extends ServiceEntityRepository<Article>
+ */
+
 // Héritage de la classe 'ServiceEntityRepository' de Doctrine
 class ArticleRepository extends ServiceEntityRepository
 {
@@ -14,15 +18,6 @@ class ArticleRepository extends ServiceEntityRepository
     {
         // Appel du parent 'ServiceEntityRepository' qui gère l'entity 'Article'
         parent::__construct($registry, Article::class);
-    }
-
-    public function findOneById($id)
-    {
-
-        $articles = $this->findAll();
-        $article = $articles[$id];
-
-        return $article;
     }
 
     public function sortArticlesByDate()
