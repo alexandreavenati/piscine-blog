@@ -20,8 +20,10 @@ class ArticleController extends AbstractController {
     // créée dans le tableau de la bdd
     public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager){
 
+        // Vérifie le type de méthode envoyée par l'utilisateur
         if ($request->isMethod('POST')) {
 
+            // Récupère les données envoyées via les 'name' du formulaire
             $title = $request->request->get('title');
             $description = $request->request->get('description');
             $content = $request->request->get('content');
@@ -36,7 +38,7 @@ class ArticleController extends AbstractController {
 			$entityManager->flush();
 
             // msg flash
-            $this->addFlash("success", "Article : " . $article->getTitle() . " a été enregistré.");
+            $this->addFlash('success', 'Article : "' . $article->getTitle() . '" a été enregistré.');
         }
 
         return $this->render('create-article.html.twig');
