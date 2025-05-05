@@ -6,6 +6,9 @@
 
 {% block main %}
 	<main>
-		{% include 'partial/_loop-article.html.twig' %}
-    </main>
+		<section class="latest-articles">
+			<h2>Tout les articles</h2>
+			{% include 'partial/_loop-article.html.twig' %}
+		</section>
+	</main>
 {% endblock main %}

@@ -1,27 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block metatitle %}
-    Bienvenue sur le site de blog !!!
+	Bienvenue sur le site de blog !!!
 {% endblock metatitle %}
 
 {% block main %}
-<main class="home-page">
+	<main class="home-page">
 
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Bienvenue sur Mon Blog</h1>
-                <p>Partage d’articles sur le développement, la technologie, et plus encore.</p>
-                <a href="{{ path('create-article') }}" class="btn">Écrire un article</a>
-            </div>
-        </section>
+		<section class="hero">
+			<div class="hero-content">
+				<h1>Bienvenue sur Mon Blog</h1>
+				<p>Partage d’articles sur le développement, la technologie, et plus encore.</p>
+				<a href="{{ path('create-article') }}" class="btn">Écrire un article</a>
+			</div>
+		</section>
 
-        <section class="about">
-            <h2>À propos du blog</h2>
-            <p>Ce blog est un espace collaboratif où les passionnés de web, de code et de création numérique peuvent publier et consulter des articles.</p>
-        </section>
+		<section class="about">
+			<h2>À propos du blog</h2>
+			<p>Ce blog est un espace collaboratif où les passionnés de web, de code et de création numérique peuvent publier et consulter des articles.</p>
+		</section>
 
-        {% include 'partial/_loop-article.html.twig' %}
-        
-    </main>
+		<section class="latest-articles">
+			<h2>Derniers articles publiés</h2>
+			<div class="articles-list">
+				{% if not articles %}
+					<p>Il n'y a aucun article publié pour le moment.</p>
+				{% else %}
+					{% for article in articles %}
+						<div class="article-wrapper">
+							<a href="{{ path('show-article', {'id': article.id}) }}">
+								<article class="article-card">
+									{% if article.image %}
+										<div><img src="{{ article.image }}" alt="{{ article.title }}"></div>
+									{% endif %}
+									<h3>{{ article.title }}</h3>
+									<span>Publié le
+										{{ article.createdAt | date('d/m/Y') }}</span>
+								</article>
+							</a>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</section>
+	</main>
 
 {% endblock main %}
