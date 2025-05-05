@@ -8,7 +8,32 @@
 	<main>
 		<section class="latest-articles">
 			<h2>Tout les articles</h2>
-			{% include 'partial/_loop-article.html.twig' %}
+			<div class="articles-list">
+	{% if not articles %}
+		<p>Il n'y a aucun article publié pour le moment.</p>
+	{% else %}
+		{% for article in articles %}
+			<div class="article-wrapper">
+				<a href="{{ path('show-article', {'id': article.id}) }}">
+					<article class="article-card">
+						{% if article.image %}
+							<div><img src="{{ article.image }}" alt="{{ article.title }}"></div>
+						{% endif %}
+						<h3>{{ article.title }}</h3>
+						<span>Publié le
+							{{ article.createdAt | date('d/m/Y') }}</span>
+					</article>
+				</a>
+				<div class="delete-link">
+					<a href="{{ path('delete-article', {'id': article.id}) }}" class="link-delete" onclick="return confirm('Confirmer la suppression de cet article ?')">
+						🗑 Supprimer
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+	{% endif %}
+</div>
+
 		</section>
 	</main>
 {% endblock main %}
