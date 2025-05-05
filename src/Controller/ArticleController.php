@@ -47,8 +47,10 @@ class ArticleController extends AbstractController {
 
     #[Route('/liste-articles', name:'list-articles')]
 
+    // On utilise le 'ArticleRepository' pour afficher les données de la bdd
     public function displayListArticle(ArticleRepository $articleRepository) {
 
+        // Récupère tout les articles enregistrés dans le tableau de la bdd
         $articles = $articleRepository->findAll();
 
         return $this->render('articles-list.html.twig', ['articles'=> $articles]);
