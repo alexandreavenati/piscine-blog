@@ -39,7 +39,7 @@ class ArticleController extends AbstractController {
 			$entityManager->flush();
 
             // msg flash
-            $this->addFlash('success', 'Article : "' . $article->getTitle() . '" a été enregistré.');
+            $this->addFlash('article_created', 'Article : "' . $article->getTitle() . '" a été enregistré.');
         }
 
         return $this->render('create-article.html.twig');
@@ -79,7 +79,7 @@ class ArticleController extends AbstractController {
         $entityManager->remove($article);
         $entityManager->flush();
 
-        $this->addFlash("success", "L'article a été supprimé");
+        $this->addFlash("article_deleted", "L'article a été supprimé");
 
         return $this->redirectToRoute('list-articles');
     }
