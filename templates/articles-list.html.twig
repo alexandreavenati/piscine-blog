@@ -35,15 +35,12 @@
 			</div>
 
 		</section>
+	{% endblock main %}
 
-		<section>
-			<h2>
-				{% for message in app.flashes('article_deleted') %}
-					<div class="success-message">
-						{{ message }}
-					</div>
-				{% endfor %}
-			</h2>
-		</section>
-	</main>
-{% endblock main %}
+	{% block flashMessage %}
+		{% for message in app.flashes('article_deleted') %}
+			<div class="success-message">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endblock flashMessage %}

@@ -1,52 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block metatitle %}
-    Crée ton article !!!
+	Crée ton article !!!
 {% endblock metatitle %}
 
 {% block main %}
-<section>
+	<section>
 
-	<form method="post" class="article-form">
+		<form method="post" class="article-form">
 
-		<div class="form-group">
-			<label for="title">Titre de l'article</label>
-			<input type="text" placeholder="Entrez le titre de l'article..." name="title" id="title">
-		</div>
-
-		<div class="form-group">
-			<label for="description">Description</label>
-			<input type="text" placeholder="Entrez la description de l'article..." name="description" id="description">
-		</div>
-
-		<div class="form-group">
-			<label for="content">Contenu</label>
-			<textarea name="content" id="content" placeholder="Entrez le contenu de l'article..."></textarea>
-		</div>
-
-		<div class="form-group">
-			<label for="image">Image</label>
-			<input type="text" placeholder="Entrez l'URL d'une image (facultatif)..." name="image" id="image">
-		</div>
-
-		<div class="form-group">
-			<button type="submit" name="send_article">Créer l'article</button>
-		</div>
-
-	</form>
-
-</section>
-
-<section>
-
-	<h2>
-		{% for message in app.flashes('article_created') %}
-			<div class="success-message">
-				{{ message }}
+			<div class="form-group">
+				<label for="title">Titre de l'article</label>
+				<input type="text" placeholder="Entrez le titre de l'article..." name="title" id="title">
 			</div>
-		{% endfor %}
-	</h2>
 
-</section>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<input type="text" placeholder="Entrez la description de l'article..." name="description" id="description">
+			</div>
 
+			<div class="form-group">
+				<label for="content">Contenu</label>
+				<textarea name="content" id="content" placeholder="Entrez le contenu de l'article..."></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="image">Image</label>
+				<input type="text" placeholder="Entrez l'URL d'une image (facultatif)..." name="image" id="image">
+			</div>
+
+			<div class="form-group">
+				<button type="submit" name="send_article">Créer l'article</button>
+			</div>
+
+		</form>
+
+	</section>
 {% endblock main %}
+
+
+{% block flashMessage %}
+	{% for message in app.flashes('article_created') %}
+		<div class="success-message">
+			{{ message }}
+		</div>
+	{% endfor %}
+{% endblock flashMessage %}
