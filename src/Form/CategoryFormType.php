@@ -14,9 +14,12 @@ class CategoryFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('color')
+            ->add('title', null, [
+                'attr' => ['placeholder' => 'Titre de la catégorie']])
+            ->add('description', null, [
+                'attr' => ['placeholder' => 'Description de la catégorie']])
+            ->add('color', null, [
+                'attr' => ['placeholder' => 'Ecrivez une couleur']])
             // Bouton de type submit pour valider l'envoi du formulaire
             ->add('valider', SubmitType::class)
         ;

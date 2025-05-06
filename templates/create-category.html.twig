@@ -9,12 +9,12 @@
 		<h2>Créer une catégorie</h2>
 		<div class="articles-list">
 			{{ form(categoryForm) }}
-			</div>
-			</div>
+		</div>
 	</section>
 {% endblock main %}
-{% block flashMessage %}
-	{% for message in app.flashes('category_created') %}
-		<div class="success-message">{{ message }}</div>
-	{% endfor %}
-{% endblock flashMessage %}
+
+	{% block flashMessage %}
+		{% for message in app.flashes('category_created') %}
+			<div class="success-message">{{ message }}</div>
+		{% endfor %}
+	{% endblock flashMessage %}
