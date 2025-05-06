@@ -27,17 +27,6 @@ class Category
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    public function __construct($title, $description, $color)
-    {
-        // données envoyées par l'utilisateur
-        $this->title = $title;
-        $this->description = $description;
-        $this->color = $color;
-
-        // données remplies automatiquement lors de l'envoi
-        $this->createdAt = new DateTime();
-    }
-
     public function update($title, $description, $color) {
 
         // données remplies par l'utilisateur
