@@ -80,8 +80,23 @@ class CategoryController extends AbstractController
 			$entityManager->flush();
 
             $this->addFlash('category_updated', 'Catégorie : "' . $category->getTitle() . '" a été modifiée.');
+
+            return $this->redirectToRoute('category-list');
 		}
 
         return $this->render('update-category.html.twig', ['categoryForm' => $categoryForm->createView()]);
+    }
+
+    #[Route('/supprimer-categorie/{id}', name:'delete-category')]
+
+    public function deleteArticle(CategoryRepository $categoryRepository, EntityManagerInterface $entityManager, $id) {
+
+        $category = $categoryRepository->find($id);
+        $entityManager->remove($category);
+        $entityManager->flush();
+
+        $this->addFlash("category_deleted", "La catégorie a été supprimé");
+
+        return $this->redirectToRoute('category-list');
     }
 }
