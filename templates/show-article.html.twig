@@ -9,7 +9,7 @@
 		<section class="latest-articles">
 			<h2>{{ article.title }}</h2>
 			<div class="articles-list">
-                    <article class="article-card">
+                    <article class="article-card {% if article.category %}{{ article.category.color }}{% endif %}">
 						{% if article.image %}
 							<img src="{{ article.image }}" alt="{{ article.title }}">
 						{% endif %}
