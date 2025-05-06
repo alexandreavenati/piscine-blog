@@ -9,13 +9,16 @@
 		<section class="latest-articles">
 			<h2>{{ category.title }}</h2>
 			<div class="articles-list">
-                    <article class="article-card {{ category.color }}">
-						<h3>{{ category.title }}</h3>
-						<p><b>{{ category.description }}</b></p>
-						<span>Publié le {{ category.createdAt | date('d/m/Y') }}</span>
-					    </p>
-				    </article>
-		    </div>
-	    </section>
-    </main>
-{% endblock main %}
+				{# Donne une classe par couleur donné aux catégories #}
+				<article class="article-card {{ category.color }}">
+					<h3>{{ category.title }}</h3>
+					<p>
+						<b>{{ category.description }}</b>
+					</p>
+					<span>Publié le
+						{{ category.createdAt | date('d/m/Y') }}</span>
+				</p>
+			</article>
+		</div>
+	</section>
+</main>{% endblock main %}
