@@ -47,13 +47,14 @@ class Article
     private ?Category $category = null;
 
     // méthode pour créer un article
-    public function __construct($title, $description, $content, $image)
+    public function __construct($title, $description, $content, $image, $category)
     {
         // données envoyées par l'utilisateur
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
         $this->image = $image;
+        $this->category = $category;
 
         // données remplies automatiquement lors de l'envoi
         $this->createdAt = new DateTime();

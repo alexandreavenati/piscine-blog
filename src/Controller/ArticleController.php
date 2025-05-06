@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +21,9 @@ class ArticleController extends AbstractController {
     // Utilisation de la classe Request de Symfony pour récupérer le type de données envoyées
     // Utilisation de la classe EntityManagerInterface de Symfony pour sauvegarder et pousser le contenu de l'article
     // créée dans le tableau de la bdd
-    public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager){
+    public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository){
+
+        $category = $categoryRepository->findAll();
 
         // Vérifie le type de méthode envoyée par l'utilisateur
         if ($request->isMethod('POST')) {
@@ -29,8 +33,12 @@ class ArticleController extends AbstractController {
             $description = $request->request->get('description');
             $content = $request->request->get('content');
             $image = $request->request->get('image');
+            $categoryId = $request->request->get('category');
 
-            $article = new Article($title, $description, $content, $image);
+            // On récupère l'id de la catégorie sélectionnée
+            $category = $categoryRepository->find($categoryId);
+
+            $article = new Article($title, $description, $content, $image, $category);
 
             // sauvegarde l'article créé
             $entityManager->persist($article);
@@ -42,7 +50,7 @@ class ArticleController extends AbstractController {
             $this->addFlash('article_created', 'Article : "' . $article->getTitle() . '" a été enregistré.');
         }
 
-        return $this->render('create-article.html.twig');
+        return $this->render('create-article.html.twig', ['categories' => $category]);
     }
 
     #[Route('/liste-articles', name:'list-articles')]

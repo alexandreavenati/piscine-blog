@@ -15,6 +15,16 @@
 			</div>
 
 			<div class="form-group">
+				<label for="category">Catégorie de l'article</label>
+				<select name="category" id="category">
+					<option value="" selected disabled>--Choisissez une catégorie svp--</option>
+					{% for category in categories %}
+						<option value="{{ category.id }}">{{ category.title}}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div class="form-group">
 				<label for="description">Description</label>
 				<input type="text" placeholder="Entrez la description de l'article..." name="description" id="description">
 			</div>
