@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}
+	{{ category.title }}
+{% endblock metatitle %}
+
+{% block main %}
+	<main>
+		<section class="latest-articles">
+			<h2>{{ category.title }}</h2>
+			<div class="articles-list">
+                    <article class="article-card">
+						<h3>{{ category.title }}</h3>
+						<p><b>{{ category.description }}</b></p>
+						<span>Publié le {{ category.createdAt | date('d/m/Y') }}</span>
+					    </p>
+				    </article>
+		    </div>
+	    </section>
+    </main>
+{% endblock main %}
