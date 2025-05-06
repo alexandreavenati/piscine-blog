@@ -5,22 +5,24 @@
 {% endblock metatitle %}
 
 {% block main %}
-		<section class="latest-articles, home-page">
-			<h2>Toutes les catégories</h2>
-			<div class="articles-list">
-					{% for category in categories %}
-						<div class="article-wrapper">
-							<a href="{{ path('show-category', {'id':category.id}) }}">
-								<article class="article-card {{ category.color }}">
-									<h3>{{ category.title }}</h3>
-									<span>Publié le
-										{{ category.createdAt | date('d/m/Y') }}</span>
-								</article>
-							</a>
-						</div>
-					{% endfor %}
-			</div>
+	<section class="latest-articles, home-page">
+		<h2>Toutes les catégories</h2>
+		<div class="articles-list">
+			{% for category in categories %}
+				<div class="article-wrapper">
+					<a href="{{ path('show-category', {'id':category.id}) }}">
+						<article class="article-card {{ category.color }}">
+							<h3>{{ category.title }}</h3>
+							<span>Publié le
+								{{ category.createdAt | date('d/m/Y') }}</span>
+						</article>
+					</a>
+				</div>
+				<div class="update-link">
+					<a href="{{ path('update-category', {'id': category.id}) }}" class="link-update">✏️ Modifier</a>
+				</div>
+			{% endfor %}
+		</div>
 
-		</section>
-	{% endblock main %}
-
+	</section>
+{% endblock main %}

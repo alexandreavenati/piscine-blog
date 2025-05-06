@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}
+	Crée ta catégorie !
+{% endblock metatitle %}
+
+{% block main %}
+	<section class="latest-articles, home-page">
+		<h2>Modifier une catégorie</h2>
+		<div class="articles-list">
+			{{ form(categoryForm) }}
+			</div>
+		</section>
+	{% endblock main %}
+
+	{% block flashMessage %}
+		{% for message in app.flashes('category_updated') %}
+			<div class="success-message">{{ message }}</div>
+		{% endfor %}
+	{% endblock flashMessage %}

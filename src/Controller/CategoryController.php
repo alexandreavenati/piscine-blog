@@ -66,4 +66,22 @@ class CategoryController extends AbstractController
 
         return $this->render('create-category.html.twig', ['categoryForm' => $categoryForm->createView()]);
     }
+
+    #[Route('/modifier-categorie/{id}', name:'update-category')]
+    public function updateCategory($id, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager){
+
+        $category = $categoryRepository->find($id);
+
+        $categoryForm =$this->createForm(CategoryFormType::class, $category);
+        $categoryForm->handleRequest($request);
+
+        if ($categoryForm->isSubmitted()) {
+			$entityManager->persist($category);
+			$entityManager->flush();
+
+            $this->addFlash('category_updated', 'Catégorie : "' . $category->getTitle() . '" a été modifiée.');
+		}
+
+        return $this->render('update-category.html.twig', ['categoryForm' => $categoryForm->createView()]);
+    }
 }
