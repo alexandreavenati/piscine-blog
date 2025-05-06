@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Article;
-use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,6 +22,7 @@ class ArticleController extends AbstractController {
     // créée dans le tableau de la bdd
     public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository){
 
+        // Récupère toutes les catégories enregistrés dans le tableau de la bdd
         $category = $categoryRepository->findAll();
 
         // Vérifie le type de méthode envoyée par l'utilisateur
