@@ -11,7 +11,7 @@
 					{% for category in categories %}
 						<div class="article-wrapper">
 							<a href="{{ path('show-category', {'id':category.id}) }}">
-								<article class="article-card">
+								<article class="article-card {{ category.color }}">
 									<h3>{{ category.title }}</h3>
 									<span>Publié le
 										{{ category.createdAt | date('d/m/Y') }}</span>
@@ -24,10 +24,3 @@
 		</section>
 	{% endblock main %}
 
-	{% block flashMessage %}
-		{% for message in app.flashes('article_deleted') %}
-			<div class="success-message">
-				{{ message }}
-			</div>
-		{% endfor %}
-	{% endblock flashMessage %}
