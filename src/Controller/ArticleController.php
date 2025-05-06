@@ -60,6 +60,7 @@ class ArticleController extends AbstractController {
 
         // Récupère tout les articles enregistrés dans le tableau de la bdd
         $articles = $articleRepository->findAll();
+        // Récupère toutes les catégories enregistrés dans le tableau de la bdd
         $category = $categoryRepository->findAll();
 
         return $this->render('articles-list.html.twig', ['articles'=> $articles, 'categories' => $category]);
