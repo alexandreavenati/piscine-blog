@@ -33,11 +33,13 @@ class ArticleController extends AbstractController {
             $description = $request->request->get('description');
             $content = $request->request->get('content');
             $image = $request->request->get('image');
-            $categoryId = $request->request->get('category');
 
             // On récupère l'id de la catégorie sélectionnée
-            $category = $categoryRepository->find($categoryId);
+            $categoryId = $request->request->get('category');
 
+            // On récupère la catégorie complète liée à l'id
+            $category = $categoryRepository->find($categoryId);
+            
             $article = new Article($title, $description, $content, $image, $category);
 
             // sauvegarde l'article créé
