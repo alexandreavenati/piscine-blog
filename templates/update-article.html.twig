@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block metatitle %}
-    Modifiez votre article
+	Modifiez votre article
 {% endblock metatitle %}
 
 {% block main %}
@@ -9,12 +9,28 @@
 	<h1>Modifier un article</h1>
 
 
-	<form method="POST">
+	<form method="POST" class="article-form">
 
 		<label>Titre
 			<input type="text" name="title" value="{{ article.title }}">
 		</label>
 
+		<label for="category">Catégorie de l'article
+			<select name="category" id="category">
+				{% if article.category is null %}
+					<option value="" selected disabled>-- Veuillez choisir une catégorie --</option>
+				{% else %}
+					<option value="" disabled>-- Veuillez choisir une catégorie --</option>
+				{% endif %}
+
+				{% for category in categories %}
+					<option value="{{ category.id }}" 
+					{% if article.category and category.id == article.category.id %} selected {% endif %}>
+					{{ category.title}}
+					</option>
+				{% endfor %}
+			</select>
+		</label>
 
 		<label>Description
 			<input type="text" name="description" value="{{ article.description }}">
@@ -29,7 +45,7 @@
 		</label>
 
 		<input type="submit">
-	
+
 	</form>
 
 {% endblock main %}

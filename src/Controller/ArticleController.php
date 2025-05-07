@@ -97,10 +97,12 @@ class ArticleController extends AbstractController {
     }
 
     #[Route(path: '/modifier-article/{id}', name: "update-article")]
-	public function displayUpdateArticle( ArticleRepository $articleRepository, EntityManagerInterface $entityManager,Request $request, $id) {
+	public function displayUpdateArticle( ArticleRepository $articleRepository, EntityManagerInterface $entityManager,Request $request, CategoryRepository $categoryRepository, $id) {
 
         // On trouve l'article par l'id
 		$article = $articleRepository->find($id);
+        // Récupère toutes les catégories enregistrés dans le tableau de la bdd
+        $category = $categoryRepository->findAll();
 
         // vérifie si la méthode d'envoi est 'POST'
         if ($request->isMethod('POST')) {
@@ -109,9 +111,15 @@ class ArticleController extends AbstractController {
             $description = $request->request->get('description');
             $content = $request->request->get('content');
             $image = $request->request->get('image'); 
+
+            // On récupère l'id de la catégorie sélectionnée
+            $categoryId = $request->request->get('category');
+
+            // On récupère la catégorie complète liée à l'id
+            $category = $categoryRepository->find($categoryId);
             
             // On modifie le contenu de l'article
-            $article->update($title, $description, $content, $image);
+            $article->update($title, $description, $content, $image, $category);
 
             // On sauvegarde la lodification du contenu
             $entityManager->persist($article);
@@ -125,6 +133,6 @@ class ArticleController extends AbstractController {
         
         
 
-		return $this->render('update-article.html.twig', ['article' => $article]);
+		return $this->render('update-article.html.twig', ['article' => $article, 'categories' => $category]);
 	}
 }

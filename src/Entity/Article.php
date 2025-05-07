@@ -62,13 +62,14 @@ class Article
     }
 
     // méthode pour modifier/mettre à jour les articles
-    public function update($title, $description, $content, $image) {
+    public function update($title, $description, $content, $image, $category) {
 
         // données remplies par l'utilisateur
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
         $this->image = $image;
+        $this->category = $category;
     }
 
     public function getId(): ?int
